@@ -30,6 +30,28 @@
     --radius-padrao: 8px;
 }
 
+/* ==========================================================================
+   Estilos Base para Botões
+   ========================================================================== */
+.btn,
+input[type="submit"],
+.btn-primary,
+.btn-secondary,
+.btn-contato,
+.wpcf7-submit {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid transparent;
+    border-radius: var(--radius-padrao);
+    font-family: var(--fonte-principal);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
 body {
     font-family: var(--fonte-principal);
     color: var(--texto-principal);
@@ -104,21 +126,25 @@ body {
     width: 100%;
 }
 
+/* Variação: Botão de Contato (usa o estilo primário) */
 .btn-contato {
     background-color: var(--cor-destaque);
-    color: var(--cor-principal); /* Texto escuro no amarelo para contraste */
-    padding: 12px 28px;
-    border-radius: var(--radius-padrao);
-    text-decoration: none;
-    font-weight: 700;
-    transition: var(--transition);
+    color: var(--cor-principal);
     box-shadow: 0 4px 6px rgba(242, 183, 5, 0.2);
 }
 
 .btn-contato:hover {
     background-color: var(--cor-destaque-hover);
+    color: var(--cor-principal);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(242, 183, 5, 0.3);
+}
+
+/* Variação: Botão Secundário (Estilo "Ghost") */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--cor-destaque);
+    border-color: var(--cor-destaque);
 }
 
 /* Hero Section */
@@ -152,24 +178,18 @@ body {
     max-width: 90%;
 }
 
+/* Variação: Botão Primário */
 .btn-primary {
     background-color: var(--cor-destaque);
     color: var(--cor-principal);
-    padding: 16px 36px;
-    border-radius: var(--radius-padrao);
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-block;
-    transition: var(--transition);
+    padding: 14px 32px; /* Leve ajuste para manter proporção */
     box-shadow: 0 4px 15px rgba(242, 183, 5, 0.3);
-    border: 2px solid transparent;
 }
 
 .btn-primary:hover {
-    background-color: transparent;
-    color: var(--cor-destaque);
-    border-color: var(--cor-destaque);
-    transform: translateY(-5px);
+    background-color: var(--cor-destaque-hover);
+    color: var(--cor-principal);
+    transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(242, 183, 5, 0.2);
 }
 
@@ -393,42 +413,6 @@ body {
     border-radius: var(--radius-padrao);
     box-shadow: var(--sombra-suave);
     border: 1px solid rgba(0,0,0,0.03);
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--cor-principal);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid var(--bordas-divisores);
-    border-radius: var(--radius-padrao);
-    font-family: var(--fonte-principal);
-    font-size: 1rem;
-    transition: var(--transition);
-    background-color: #FAFAFA;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--cor-secundaria);
-    background-color: var(--branco);
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(0, 100, 148, 0.1);
-}
-
-.form-group textarea {
-    min-height: 180px;
-    resize: vertical;
 }
 
 /* Footer */
@@ -784,40 +768,13 @@ body {
 }
 
 /* Formulário de Comentário */
-.comment-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-.comment-form input[type="text"],
-.comment-form input[type="email"],
-.comment-form input[type="url"],
-.comment-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--bordas-divisores);
-    border-radius: 5px;
-    font-family: var(--fonte-principal);
-    margin-bottom: 20px;
-}
-
 .comment-form .form-submit .submit {
-    background-color: var(--cor-destaque);
-    color: var(--branco);
-    padding: 15px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
+    /* Herda os estilos de .btn e input[type="submit"] */
+    margin-top: 10px;
 }
 
 .comment-form .form-submit .submit:hover {
-    background-color: var(--cor-destaque-hover);
-    transform: translateY(-3px);
+    /* O hover já está definido na base */
 }
 
 /* Estilos Avançados para Widgets da Sidebar */
@@ -872,18 +829,14 @@ body {
     border-right: none;
 }
 
-.widget_search .search-submit {
-    background-color: var(--cor-destaque);
-    color: var(--branco);
-    border: none;
-    padding: 0 20px;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
-    transition: var(--transition);
-}
-
+.widget_search .search-submit,
 .widget_search .search-submit:hover {
-    background-color: var(--cor-destaque-hover);
+    /* Herda os estilos de input[type="submit"] */
+    border-radius: 0 5px 5px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* Garante que a cor do texto seja a correta */
+    color: var(--cor-principal);
 }
 
 /* Widget de Nuvem de Tags */
@@ -896,4 +849,79 @@ body {
     color: var(--branco);
     background-color: var(--cor-destaque);
 }
+
+
+/* ==========================================================================
+   Estilos de Formulário Modernos
+   ========================================================================== */
+
+/* --- Estilos Gerais para Inputs e Textareas --- */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--bordas-divisores);
+    border-radius: var(--radius-padrao);
+    background-color: #f9f9f9;
+    font-family: var(--fonte-principal);
+    font-size: 16px;
+    color: var(--texto-principal);
+    transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+    box-shadow: 0 0 0 3px rgba(0, 100, 148, 0.15);
+    background-color: var(--branco);
+}
+
+/* --- Estilos para Botões de Formulário --- */
+input[type="submit"],
+.wpcf7-submit,
+.comment-form .submit {
+    /* Herda de .btn */
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+}
+
+input[type="submit"]:hover,
+.wpcf7-submit:hover,
+.comment-form .submit:hover {
+    background-color: var(--cor-destaque-hover);
+    transform: translateY(-2px);
+}
+
+/* --- Formulário de Comentários do WordPress --- */
+.comment-form .comment-notes,
+.comment-form .logged-in-as {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: var(--texto-secundario);
+}
+
+/* --- Formulário do Contact Form 7 --- */
+.wpcf7-form p {
+    margin-bottom: 0;
+}
+
+.wpcf7-form-control-wrap {
+    display: block;
+    margin-bottom: 15px;
 }
