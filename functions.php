@@ -134,6 +134,11 @@ function techconsult_body_classes($classes) {
         $classes[] = 'page-template';
     }
     
+    // Adiciona uma classe se o modelo de tela cheia estiver em uso
+    if (is_page_template('template-full-screen.php')) {
+        $classes[] = 'is-full-screen-template';
+    }
+    
     return $classes;
 }
 add_filter('body_class', 'techconsult_body_classes');

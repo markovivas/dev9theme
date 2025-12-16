@@ -8,3 +8,36 @@ Version: 1.0.1
 License: GPL v2 or later
 Text Domain: dev9
 */
+
+/* Layout de Tela Cheia */
+.is-full-screen-template {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.is-full-screen-template .site-header,
+.is-full-screen-template .site-footer {
+    flex-shrink: 0; /* Impede que o header e footer encolham */
+}
+
+.is-full-screen-template .site-main {
+    flex-grow: 1; /* Faz o conteúdo principal crescer para ocupar o espaço */
+    width: 100%;
+}
+
+/* Remove a largura máxima do contêiner no modo de tela cheia */
+.is-full-screen-template .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    padding: 0; /* Opcional: remove paddings laterais */
+}
+
+/*
+ * Sobrescreve o layout de grid das páginas internas,
+ * removendo o espaço reservado para a sidebar.
+*/
+.is-full-screen-template .main-content-container {
+    display: block; /* Remove o display: grid */
+    grid-template-columns: 1fr; /* Garante uma única coluna */
+}
