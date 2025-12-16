@@ -149,8 +149,6 @@ add_filter('upload_mimes', 'techconsult_svg_support');
 
 /**
  * Fallback para o menu do rodapé quando nenhum menu estiver atribuído.
- * 
- * Exibe um menu simples com links básicos do site para evitar erros de função inexistente.
  */
 function techconsult_footer_menu_fallback() {
     echo '<ul id="footer-fallback-menu" class="menu">';
@@ -159,3 +157,47 @@ function techconsult_footer_menu_fallback() {
     echo '<li><a href="' . esc_url(home_url('/contato')) . '">' . esc_html__('Contato', 'techconsult') . '</a></li>';
     echo '</ul>';
 }
+
+/**
+ * Otimizações de Performance e Limpeza do Header
+ */
+function techconsult_cleanup_head() {
+    // Remove links desnecessários
+    remove_action('wp_head', 'rsd_link');
+    remove_action('wp_head', 'wlwmanifest_link');
+    remove_action('wp_head', 'wp_generator'); // Remove versão do WP
+    remove_action('wp_head', 'start_post_rel_link');
+    remove_action('wp_head', 'index_rel_link');
+    remove_action('wp_head', 'adjacent_posts_rel_link');
+}
+add_action('init', 'techconsult_cleanup_head');
+
+/**
+ * Remover emojis (Melhoria de Performance)
+ */
+function techconsult_disable_emojis() {
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+}
+add_action('init', 'techconsult_disable_emojis');
+
+/**
+ * Adicionar suporte a logotipo personalizado com flexibilidade
+ */
+function techconsult_custom_logo_setup() {
+    $defaults = array(
+        'height'               => 100,
+        'width'                => 400,
+        'flex-height'          => true,
+        'flex-width'           => true,
+        'header-text'          => array('site-title', 'site-description'),
+        'unlink-homepage-logo' => true, 
+    );
+    add_theme_support('custom-logo', $defaults);
+}
+add_action('after_setup_theme', 'techconsult_custom_logo_setup');

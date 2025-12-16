@@ -73,10 +73,13 @@ $hero_image_url = get_theme_mod('hero_image', ''); // Pega a URL da imagem do Cu
         <div class="about-content">
             <div class="about-image">
                 <?php
-                $about_image_url = get_theme_mod('about_image', get_template_directory_uri() . '/assets/images/about-image.jpg');
-                if (!empty($about_image_url)) : ?>
-                    <img src="<?php echo esc_url($about_image_url); ?>" alt="<?php esc_attr_e('Sobre nós', 'techconsult'); ?>">
-                <?php endif; ?>
+                $about_image_url = get_theme_mod('about_image');
+                if (empty($about_image_url)) {
+                    // Fallback image using theme colors
+                    $about_image_url = 'https://placehold.co/600x600/12293D/FFFFFF?text=Sobre+Nós';
+                }
+                ?>
+                <img src="<?php echo esc_url($about_image_url); ?>" alt="<?php esc_attr_e('Sobre nós', 'techconsult'); ?>">
             </div>
             <div class="about-text">
                 <h2><?php echo esc_html(get_theme_mod('about_title', __('Empresa confiável e profissional em soluções de TI', 'techconsult'))); ?></h2>
