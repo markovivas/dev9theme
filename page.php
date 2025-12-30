@@ -1,38 +1,42 @@
 <?php
 /**
- * The template for displaying all pages
+ * O template para exibir todas as páginas estáticas.
  *
- * @package TechConsult
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-page
+ *
+ * @package small-apps
  */
 
 get_header();
 ?>
 
-<main id="primary" class="site-main">
-    <div class="container main-content-container">
-        <div class="content-area">
+<div class="container py-5">
+	<div class="row">
+		<div class="col">
+			<?php
+			while ( have_posts() ) :
+				the_post();
+			?>
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<header class="entry-header mb-4">
+						<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+					</header><!-- .entry-header -->
 
-            <?php
-            while (have_posts()) :
-                the_post();
-            ?>
+					<div class="entry-content">
+						<?php
+						the_content();
 
-                <article id="post-<?php the_ID(); ?>" <?php post_class('page-article'); ?>>
-                    <header class="entry-header">
-                        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-                    </header>
-
-                    <div class="entry-content">
-                        <?php the_content(); ?>
-                    </div>
-                </article>
-
-            <?php endwhile; // End of the loop. ?>
-
-        </div>
-        <?php get_sidebar(); ?>
-    </div>
-</main>
+						wp_link_pages( array(
+							'before' => '<div class="page-links">' . esc_html__( 'Páginas:', 'small-apps' ),
+							'after'  => '</div>',
+						) );
+						?>
+					</div><!-- .entry-content -->
+				</article><!-- #post-<?php the_ID(); ?> -->
+			<?php endwhile; // Fim do loop. ?>
+		</div><!-- .col -->
+	</div><!-- .row -->
+</div><!-- .container -->
 
 <?php
 get_footer();

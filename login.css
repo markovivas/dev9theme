@@ -1,0 +1,59 @@
+body.login {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+#login h1 a {
+    background-image: url("assets/images/logo-login.png") !important;
+    width: 220px;
+    height: 80px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#loginform {
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    border: none;
+    padding: 30px;
+}
+
+#loginform label {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+#loginform input[type="text"],
+#loginform input[type="password"] {
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    padding: 8px 15px;
+}
+
+.wp-core-ui .button-primary {
+    background: #00b4d8;
+    border: none;
+    border-radius: 8px;
+}
+
+.wp-core-ui .button-primary:hover {
+    background: #0096c7;
+}
+
+.login #nav a,
+.login #backtoblog a {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.login #nav a:hover,
+.login #backtoblog a:hover {
+    color: #00b4d8 !important;
+}
+
+.language-switcher {
+    display: none;
+}

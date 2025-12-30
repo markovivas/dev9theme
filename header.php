@@ -1,49 +1,44 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<a class="skip-link screen-reader-text" href="#primary">
-    <?php esc_html_e('Pular para o conteúdo', 'techconsult'); ?>
-</a>
-
-<header id="masthead" class="site-header">
-    <div class="container header-container">
-        <div class="site-logo">
-            <?php if (has_custom_logo()) : ?>
-                <?php the_custom_logo(); ?>
-            <?php else : ?>
-                <a href="<?php echo esc_url(home_url('/')); ?>">
-                    <h1><?php bloginfo('name'); ?></h1>
-                </a>
-            <?php endif; ?>
-        </div>
-
-        <nav id="site-navigation" class="main-navigation">
-            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                <span class="screen-reader-text"><?php esc_html_e('Menu Principal', 'techconsult'); ?></span>
-                <span class="hamburger"></span>
-            </button>
-            
+<header id="masthead" class="site-header sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
             <?php
-            wp_nav_menu(array(
-                'theme_location' => 'menu-principal',
-                'menu_id'        => 'primary-menu',
-                'container'      => false,
-                'fallback_cb'    => false,
-            ));
+            if ( has_custom_logo() ) {
+                the_custom_logo();
+            } else {
+                ?>
+                <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+                <?php
+            }
             ?>
-        </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primary-menu" aria-controls="primary-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'small-apps' ); ?>">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="header-actions">
-            <a href="<?php echo esc_url(home_url('/contato')); ?>" class="btn-contato">
-                <?php esc_html_e('Fale Conosco', 'techconsult'); ?>
-            </a>
+            <?php
+            wp_nav_menu( array(
+                'theme_location'  => 'primary',
+                'depth'           => 2, // 1 = sem dropdowns, 2 = com dropdowns.
+                'container'       => 'div',
+                'container_class' => 'collapse navbar-collapse',
+                'container_id'    => 'primary-menu',
+                'menu_class'      => 'navbar-nav ms-auto mb-2 mb-lg-0',
+                'fallback_cb'     => '__return_false',
+                'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s<li class="nav-item ms-lg-2">' . get_search_form( false ) . '</li></ul>',
+                'walker'          => new Bootstrap_Nav_Walker(),
+            ) );
+            ?>
         </div>
-    </div>
+    </nav>
 </header>
+
+<main id="main" class="site-main">
